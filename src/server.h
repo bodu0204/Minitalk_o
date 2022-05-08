@@ -15,11 +15,11 @@ enum
 
 typedef struct s_request
 {
-	uint8_t				pid;
-	uint8_t				*request;
+	int				pid;
+	int				*request;
 	size_t				buf;
 	size_t				use;
-	uint8_t				bit;
+	unsigned int		bit;
 	size_t				len;
 	struct s_request	next;
 }	t_req;
