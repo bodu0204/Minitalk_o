@@ -1,4 +1,12 @@
 #include "server.h"
+t_req	*search_client(pid_t	i);
+t_req	*mknwereq(pid_t	i);
+void more_mem(t_req	*r);
+void	output(t_req	*r);
+int check_hash(t_req	*r);
+void	freeall(void);
+
+
 extern t_cli	g_cli;
 
 void	act(int sig, siginfo_t *info, void *context)
@@ -10,15 +18,15 @@ void	act(int sig, siginfo_t *info, void *context)
 	g_cli.is_sig = 1;
 	c = search_client(info->si_pid); //エラーの時この中でフリー exit する
 	if (sig == SIGUSR1)
-		c->request[c->len] |= 1U << c->bit;
+		c->content[c->use] |= 1U << c->bit;
 	c->bit++;
 	if (c->bit >= 8)
 	{
-		c->len++;
+		c->use++;
 		c->bit = 0;
 	}
 	more_mem(c);//エラーの時この中でフリー exit する
-	if (c->len == *((size_t *)((char *)c->request + SHA256LEN)))
+	if (c->use == *((size_t *)((char *)c->content + SHA256LEN)))
 	{
 		if (check_hash(c))
 			output(c);// 標準出力 この項目を消す successを返す エラーの時この中でフリー exit する
@@ -56,7 +64,7 @@ t_req	*mknwereq(pid_t	i)
 	}
 	r->buf = BUFSIZE;
 	r->pid = i;
-	r->content = calloc(r->buf);/*  */
+	r->content = calloc(r->buf, sizeof(char));/*  */
 	if (!r->content)
 	{
 		write(STDOUT_FILENO, "malloc error\n", 14);
@@ -79,9 +87,9 @@ t_req	*mknwereq(pid_t	i)
 void more_mem(t_req	*r)
 {
 	char	*new;
-	size_t	*l;
+	size_t	l;
 
-	if (r->len + 1  >= r->buf)
+	if (r->use + 1  >= r->buf)
 	{
 		l = r->buf;
 		r->buf <<= 1;
@@ -89,7 +97,7 @@ void more_mem(t_req	*r)
 		if (!new)
 		{
 		write(STDOUT_FILENO, "malloc error\n", 14);
-		freeall();/*  */
+		freeall();
 		exit(1);
 		}
 		memcpy(new, r->content, l);
@@ -105,7 +113,7 @@ void	output(t_req	*r)
 	t_req	*bf;
 
 	j = write(STDOUT_FILENO, r->content + HEADER_SIZE, r->use - HEADER_SIZE);
-	if (i < 0)
+	if (j < 0)
 	{
 		freeall();/*  */
 		exit(1);
@@ -127,9 +135,10 @@ void	output(t_req	*r)
 
 int check_hash(t_req	*r)
 {
-	uint16_t hash[SHA256LEN];
-	sha256(r->content + SHA256LEN, r->use, hash);
-	return (!memcmp(r->content, hash, SHA256LEN))
+	uint8_t hash[SHA256LEN];
+
+	sha256(r->content + SHA256LEN, r->use - SHA256LEN, hash);
+	return (!memcmp(r->content, hash, SHA256LEN));
 }
 
 void	freeall(void)

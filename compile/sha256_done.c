@@ -1,5 +1,4 @@
 #include"sha256.h"
-#include"debug.h"
 
 void	sha256_done(t_sha *ctx, uint8_t *hdst)
 {

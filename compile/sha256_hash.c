@@ -1,5 +1,4 @@
 #include"sha256.h"
-#include"debug.h"
 
 void	sha256_hash(t_sha *ctx, const void *data, size_t len)
 {

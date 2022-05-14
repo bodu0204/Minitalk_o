@@ -1,18 +1,23 @@
 #include "server.h"
+#include <stdio.h>
+void setact(struct sigaction	*a);
+void	reserror(struct sigaction	*opn);
+
 t_cli	g_cli = {0};
 
 int main (void)
 {
 	struct sigaction	opn;
 
-	setact(&opn)
+	printf("PID:%d\n", getpid());
+	setact(&opn);
 	sigaction(SIGUSR1, &opn, NULL);
 	sigaction(SIGUSR2, &opn, NULL);
 	while(1)
 	{
 		while (g_cli.request && !g_cli.is_sig)
 		{
-			reserror();
+			reserror(&opn);
 			sleep(1);
 		}
 		if(!g_cli.request)
@@ -34,7 +39,7 @@ void setact(struct sigaction	*a)
 	return ;
 }
 
-void	reserror()
+void	reserror(struct sigaction	*opn)
 {
 	t_req	*c;
 	pid_t	i;
@@ -47,10 +52,10 @@ void	reserror()
 		return ;
 	g_cli.request = c->next;
 	i = c->pid;
-	free(c->request);
+	free(c->content);
 	free(c);
-	sigaction(SIGUSR1, &opn, NULL);
-	sigaction(SIGUSR2, &opn, NULL);
+	sigaction(SIGUSR1, opn, NULL);
+	sigaction(SIGUSR2, opn, NULL);
 	kill(SIGUSR2, i);
 	return ;
 }

@@ -8,20 +8,10 @@
 # define BUFSIZE 64
 # define HEADER_SIZE (sizeof(uint8_t) * SHA256LEN + sizeof(size_t))
 
-
-enum
-{
-	LINKING,
-	IN_HASH,
-	IN_PID,
-	IN_HASH,
-};
-
-
 typedef struct s_request
 {
 	int					pid;
-	int					*content;
+	char				*content;
 	size_t				buf;
 	size_t				use;
 	unsigned int		bit;
@@ -40,6 +30,8 @@ typedef struct s_rtn
 	size_t	prtl;
 	char	*prt;
 }	t_rtn;
+
+void	act(int sig, siginfo_t *info, void *context);
 
 void	sha256(const void *data, size_t len, uint8_t *hash);
 #endif
