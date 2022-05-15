@@ -1,14 +1,4 @@
 #include "server.h"
-#include "debug.h"/* test */
-
-void showhash(uint8_t *hash)/* test */
-{
-    for (size_t i = 0; i < 32; i++){
-        printf("%02hhx",hash[i]);
-    }
-    return ;
-}
-
 t_req	*search_client(pid_t	i);
 t_req	*mknwereq(pid_t	i);
 void more_mem(t_req	*r);
@@ -22,41 +12,31 @@ extern t_cli	g_cli;
 void	act(int sig, siginfo_t *info, void *context)
 {
 	t_req *c;
+	void *p;
 
-	g_cli.is_sig++;
-	if (g_cli.is_sig > 1)
-		return ;
-//TESTn("SIG", sig)
-//TESTn("PID", info->si_pid)
 	(void)context;
+	g_cli.is_sig = 1;
 	c = search_client(info->si_pid); //エラーの時この中でフリー exit する
 	if (sig == SIGUSR1)
 		c->content[c->use] |= 1U << c->bit;
-//TESTn("c->bit", c->bit)
 	c->bit++;
 	if (c->bit >= 8)
 	{
 		c->use++;
 		c->bit = 0;
-//if (c->use == SHA256LEN)
-//{showhash((uint8_t *)(c->content));TEST}
-
-//TESTn("c->use", c->use)
 	}
 	more_mem(c);//エラーの時この中でフリー exit する
-//TEST
-	if (c->use >= HEADER_SIZE)
+	if (c->use == *((size_t *)((char *)c->content + SHA256LEN)))
 	{
-		if (c->use == *((size_t *)((char *)c->content + SHA256LEN)))
-			if (check_hash(c))
-				output(c);// 標準出力 この項目を消す successを返す エラーの時この中でフリー exit する
+		if (check_hash(c))
+			output(c);// 標準出力 この項目を消す successを返す エラーの時この中でフリー exit する
 	}
-//TEST
 }
 
 t_req	*search_client(pid_t	i)
 {
 	t_req	*r;
+	char	*cnt;
 
 	r = g_cli.request;
 	while(r)
@@ -75,20 +55,11 @@ t_req	*mknwereq(pid_t	i)
 	t_req	*r;
 	t_req	*pre;
 
-//t_req *j;
-//j = g_cli.request;
-//printf("*");fflush(stdout);
-//while (j)
-//{
-//printf("->%d", j->pid);fflush(stdout);
-//j = j->next;
-//}TEST
-//TESTn("mkPID", i)
 	r = calloc(sizeof(t_req), 1);/*  */
 	if (!r)
 	{
 		write(STDOUT_FILENO, "malloc error\n", 14);
-		freeall();
+		freeall();/*  */
 		exit(1);
 	}
 	r->buf = BUFSIZE;
@@ -110,14 +81,6 @@ t_req	*mknwereq(pid_t	i)
 			pre = pre->next;
 		pre->next = r;
 	}
-//j = g_cli.request;
-//printf("*");fflush(stdout);
-//while (j)
-//{
-//printf("->%d", j->pid);fflush(stdout);
-//j = j->next;
-//}
-//TEST
 	return (r);
 }
 
@@ -175,8 +138,6 @@ int check_hash(t_req	*r)
 	uint8_t hash[SHA256LEN];
 
 	sha256(r->content + SHA256LEN, r->use - SHA256LEN, hash);
-showhash(hash);TEST
-showhash((uint8_t *)(r->content));TEST
 	return (!memcmp(r->content, hash, SHA256LEN));
 }
 

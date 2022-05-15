@@ -1,6 +1,6 @@
 PROJECT_NAME	= Minitalk
-ACHIEV0			= 
-ACHIEV1			= 
+ACHIEV0			= client
+ACHIEV1			= server
 ACHIEV0b		= $(ACHIEV0)_bonus
 ACHIEV1b		= $(ACHIEV1)_bonus
 SRC_PASS		= src/
@@ -52,14 +52,14 @@ file : fclean cloneprintf
 	cp -rf $(OTHER_PASS)* $(SUBMIT_d)
 	mv $(PRINTF_d) $(SUBMIT_d)
 
-test : submitfile
+test : file
 	cd "$(SUBMIT_d)" && make all
-	cd "$(SUBMIT_d)" && make bonus
+	#cd "$(SUBMIT_d)" && make bonus
 	mkdir $(TEST_d)
-	cp -rf $(SUBMIT_d)$(ACHIEV0) $(TEST_d)
-	cp -rf $(SUBMIT_d)$(ACHIEV1) $(TEST_d)
-	cp -rf $(SUBMIT_d)$(ACHIEV0b) $(TEST_d)
-	cp -rf $(SUBMIT_d)$(ACHIEV1b) $(TEST_d)
+	cp -f $(SUBMIT_d)$(ACHIEV0) $(TEST_d)
+	cp -f $(SUBMIT_d)$(ACHIEV1) $(TEST_d)
+	#cp -f $(SUBMIT_d)$(ACHIEV0b) $(TEST_d)
+	#cp -f $(SUBMIT_d)$(ACHIEV1b) $(TEST_d)
 
 fclean :
 	rm -rf $(SUBMIT_d)

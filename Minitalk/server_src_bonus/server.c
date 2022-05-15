@@ -1,7 +1,6 @@
 #include "server.h"
-#include "debug.h"/* test */
 #include <stdio.h>
-void	setact(struct sigaction	*a);
+void setact(struct sigaction	*a);
 void	reserror(struct sigaction	*opn);
 
 t_cli	g_cli = {0};
@@ -12,28 +11,19 @@ int main (void)
 
 	printf("PID:%d\n", getpid());
 	setact(&opn);
-//TEST
 	sigaction(SIGUSR1, &opn, NULL);
 	sigaction(SIGUSR2, &opn, NULL);
-//TEST
 	while(1)
 	{
-//TEST
 		while (g_cli.request && !g_cli.is_sig)
 		{
-//TEST
 			reserror(&opn);
 			sleep(1);
 		}
 		if(!g_cli.request)
-{
-//TEST
-
 			pause();
-}
 		while(g_cli.is_sig)
 		{
-//TEST
 			g_cli.is_sig = 0;
 			usleep(100000);
 		}
@@ -66,7 +56,6 @@ void	reserror(struct sigaction	*opn)
 	free(c);
 	sigaction(SIGUSR1, opn, NULL);
 	sigaction(SIGUSR2, opn, NULL);
-	kill(i, SIGUSR2);
-//TESTn("->pid", i)
+	kill(SIGUSR2, i);
 	return ;
 }

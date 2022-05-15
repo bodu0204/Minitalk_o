@@ -1,14 +1,4 @@
 #include "client.h"
-#include "debug.h"/* test */
-
-void showhash(uint8_t *hash)/* test */
-{
-    for (size_t i = 0; i < 32; i++){
-        printf("%02hhx",hash[i]);
-    }
-    return ;
-}
-
 void	send(pid_t	pid, char *s, size_t l, int	spd);
 void	connect(pid_t	pid);
 void	readin(size_t	len, t_str	*r);
@@ -20,17 +10,10 @@ int g_result = NOSIG;
 
 void act(int signo)
 {
-//TEST
 	if (signo == SIGUSR1)
-{
-TEST
 		g_result = SUCCESS;
-}
 	else if (signo == SIGUSR2)
-{
-TEST
 		g_result = FAIL;
-}
 	return ;
 }
 
@@ -39,13 +22,12 @@ int main (int argc, char *argv[])
 	pid_t	pid;
 	t_str	s;
 
-TESTn("pid", getpid())
 	if (argc != 2/*  || isnt_correct_num(argv[2]) */)
 	{
 		write(STDOUT_FILENO, "Not a valid PID\n", 16);
 		return (1);
 	}
-	pid = atoi(argv[1]);
+	pid = atoi(argv[2]);
 	signal(SIGUSR1, act);
 	signal(SIGUSR2, act);
 	connect(pid);
@@ -68,15 +50,13 @@ void	connect(pid_t	pid)
 	bzero(blank, BUFSIZE);
 	i = HEADER_SIZE;
 	memcpy(blank + SHA256LEN, &i, sizeof(size_t));
-	sha256(blank + SHA256LEN ,sizeof(size_t) , (uint8_t *)blank);
+	sha256(blank + SHA256LEN ,HEADER_SIZE , (uint8_t *)blank);
 	while(g_result != SUCCESS)
 	{
-
 		g_result = NOSIG;
 		spd = speed(CONNECT);
 		if (spd < 0)
 		{
-//TEST
 			write(STDOUT_FILENO, "Connect error\n", 14);
 			exit(1);
 		}
@@ -85,7 +65,6 @@ void	connect(pid_t	pid)
 			sleep(4);
 		if (g_result == NOSIG)
 		{
-//TEST
 			write(STDOUT_FILENO, "Connect error\n", 14);
 			exit(1);
 		}
@@ -123,7 +102,7 @@ void	readin(size_t	len, t_str	*r)
 void	treat_to_send(t_str	*s)
 {
 	memcpy(s->s + SHA256LEN, &s->l, sizeof(size_t));
-	sha256(s->s + SHA256LEN, s->l - SHA256LEN, (uint8_t *)(s->s));
+	sha256(s->s + SHA256LEN, s->l, (uint8_t *)(s->s));
 	return ;
 }
 
@@ -163,14 +142,14 @@ int speed(int flag)
 
 	if (!base)
 	{
-		i = 0;
-		prev = 1;
+		prev = 0;
 		base = 1U;
-		while (i < 4)
+		while (prev < 4)
 		{
 			type[i] = 2;
 			i++;
 		}
+		prev = 1;
 	}
 	if (flag == SUCCESS)
 	{
@@ -182,13 +161,13 @@ int speed(int flag)
 	else if (flag == CONNECT)
 	{
 		base <<= 1;
-		if (base > 100000)
+		if (base << 5 > 100000)
 			return (-1);
 		return (base << 1);
 	}
-	i = 0;
+	i = 3;
 	prev = i;
-	while (i < 4)
+	while (i >= 0)
 	{
 		if (type[i] > type[prev])
 			prev = i;
@@ -206,9 +185,7 @@ void	send(pid_t	pid, char *s, size_t l, int	spd)
 
 	b = 1U;
 	B = 0;
-/* showhash((uint8_t *)(s));  */TESTn("spd", spd)
-TESTn("l", l)
-	while(B < l)
+	while(b < l)
 	{
 		usleep(spd);
 		if (s[B] & b)
