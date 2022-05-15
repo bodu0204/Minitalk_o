@@ -38,10 +38,10 @@ all : $(ACHIEV0) $(ACHIEV1)
 	
 $(NAME) : all
 
-$(ACHIEV0) : $(PRINTF_a) $(CLIENTb_d)$(CLIENT_h) $(SHA256_d)$(SHA256_h) $(addprefix $(CLIENT_d),$(CLIENT_o)) $(addprefix $(SHA256_d),$(SHA256_o))
+$(ACHIEV0) : $(PRINTF_a) $(CLIENT_d)$(CLIENT_h) $(SHA256_d)$(SHA256_h) $(addprefix $(CLIENT_d),$(CLIENT_o)) $(addprefix $(SHA256_d),$(SHA256_o))
 	$(CC) $(CFLAGS) $(addprefix $(CLIENT_d),$(CLIENT_o)) $(addprefix $(SHA256_d),$(SHA256_o)) $(PRINTF_a) -o $(ACHIEV0)
 
-$(ACHIEV1) : $(PRINTF_a) $(SERVERb_d)$(SERVER_h) $(SHA256_d)$(SHA256_h) $(addprefix $(SERVER_d),$(SERVER_o)) $(addprefix $(SHA256_d),$(SHA256_o))
+$(ACHIEV1) : $(PRINTF_a) $(SERVER_d)$(SERVER_h) $(SHA256_d)$(SHA256_h) $(addprefix $(SERVER_d),$(SERVER_o)) $(addprefix $(SHA256_d),$(SHA256_o))
 	$(CC) $(CFLAGS) $(addprefix $(SERVER_d),$(SERVER_o)) $(addprefix $(SHA256_d),$(SHA256_o)) $(PRINTF_a) -o $(ACHIEV1)
 
 bonus : $(PRINTF_a) $(HEADER_b) $(SRC_b)
@@ -50,20 +50,16 @@ bonus : $(PRINTF_a) $(HEADER_b) $(SRC_b)
 .c.o : 
 	$(CC) $(CFLAGS) -c $< -o $(basename $<).o
 
-newprintf :
+$(PRINTF_d) :
 	rm -rf $(PRINTF_d)
 	git clone $(PRINTF_GIT) $(PRINTF_od)
-	cd "$(PRINTF_od)" && make submit
+	cd "$(PRINTF_od)" && make file
+	mv $(PRINTF_od)$(PRINTF_d) ./
 	rm -rf $(PRINTF_od)
 
-$(PRINTF_a) :
+$(PRINTF_a) : $(PRINTF_d)
 	cd "$(PRINTF_d)" && make bonus
 	cp $(PRINTF_d)$(PRINTF_a) ./
-
-push : fclean
-	git add .
-	git commit --allow-empty -m "commit form makefile"
-	git push
 
 clean :
 	cd "$(PRINTF_d)" && make clean
