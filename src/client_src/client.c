@@ -51,9 +51,13 @@ TESTn("pid", getpid())
 	connect(pid);
 	while (1)
 	{
+TEST
 		readin(HEADER_SIZE, &s);
+TEST
 		treat_to_send(&s);
+TEST
 		sending(pid, &s);
+TEST
 	}
 	return(0);
 }
@@ -104,7 +108,8 @@ void	readin(size_t	len, t_str	*r)
 		write(STDOUT_FILENO, "Read error\n", 11);
 		exit(1);
 	}
-	if (s[i] == '\n')
+//TESTn("s[i]", s[i])
+	if (s[i - 1] == '\n')
 	{
 		r->s = malloc(len + i);
 		if (!r->s)
@@ -112,7 +117,7 @@ void	readin(size_t	len, t_str	*r)
 			write(STDOUT_FILENO, "Malloc error\n", 13);
 			exit(1);
 		}
-		r->l = len + i - SHA256LEN;
+		r->l = len + i;
 	}
 	else
 		readin(len + i, r);
@@ -122,6 +127,7 @@ void	readin(size_t	len, t_str	*r)
 
 void	treat_to_send(t_str	*s)
 {
+TESTn("s->l", s->l)
 	memcpy(s->s + SHA256LEN, &s->l, sizeof(size_t));
 	sha256(s->s + SHA256LEN, s->l - SHA256LEN, (uint8_t *)(s->s));
 	return ;
@@ -171,6 +177,7 @@ int speed(int flag)
 			type[i] = 2;
 			i++;
 		}
+		type[1] = 3;
 	}
 	if (flag == SUCCESS)
 	{
@@ -192,7 +199,7 @@ int speed(int flag)
 	{
 		if (type[i] > type[prev])
 			prev = i;
-		i--;
+		i++;
 	}
 	if (type[prev] < -2)
 		return (-1);

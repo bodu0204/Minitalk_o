@@ -149,6 +149,7 @@ void	output(t_req	*r)
 	int j;
 	t_req	*bf;
 
+TESTn("r->use - HEADER_SIZE", r->use - HEADER_SIZE)
 	j = write(STDOUT_FILENO, r->content + HEADER_SIZE, r->use - HEADER_SIZE);
 	if (j < 0)
 	{
