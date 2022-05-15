@@ -39,9 +39,9 @@ cloneprintf :
 
 submitfile : push cloneprintf
 	mkdir $(SUBMIT_d)
-	cp $(SRC_PASS)* $(SUBMIT_d)
-	cp $(SRCb_PASS)* $(SUBMIT_d)
-	cp $(OTHER_PASS)* $(SUBMIT_d)
+	cp -rf$(SRC_PASS)* $(SUBMIT_d)
+	cp -rf$(SRCb_PASS)* $(SUBMIT_d)
+	cp -rf$(OTHER_PASS)* $(SUBMIT_d)
 	mv $(PRINTF_d) $(SUBMIT_d)
 
 submit : outclean submitfile
