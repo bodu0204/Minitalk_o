@@ -12,7 +12,6 @@ extern t_cli	g_cli;
 void	act(int sig, siginfo_t *info, void *context)
 {
 	t_req *c;
-	void *p;
 
 	(void)context;
 	g_cli.is_sig = 1;
@@ -36,7 +35,6 @@ void	act(int sig, siginfo_t *info, void *context)
 t_req	*search_client(pid_t	i)
 {
 	t_req	*r;
-	char	*cnt;
 
 	r = g_cli.request;
 	while(r)

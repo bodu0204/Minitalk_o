@@ -142,6 +142,7 @@ int speed(int flag)
 
 	if (!base)
 	{
+		i = 0;
 		prev = 0;
 		base = 1U;
 		while (prev < 4)

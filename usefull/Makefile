@@ -1,4 +1,4 @@
-PROJECT_NAME	= Minitalk
+PROJECT_NAME	= 
 ACHIEV0			= 
 ACHIEV1			= 
 ACHIEV0b		= $(ACHIEV0)_bonus
