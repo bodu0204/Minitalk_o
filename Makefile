@@ -49,18 +49,19 @@ submit : outclean submitfile
 
 file : fclean cloneprintf
 	mkdir $(SUBMIT_d)
-	cp $(SRC_PASS)* $(SUBMIT_d)
-	cp $(SRCb_PASS)* $(SUBMIT_d)
-	cp $(OTHER_PASS)* $(SUBMIT_d)
+	cp -rf $(SRC_PASS)* $(SUBMIT_d)
+	cp -rf $(SRCb_PASS)* $(SUBMIT_d)
+	cp -rf $(OTHER_PASS)* $(SUBMIT_d)
 	mv $(PRINTF_d) $(SUBMIT_d)
 
 test : submitfile
 	cd "$(SUBMIT_d)" && make all
 	cd "$(SUBMIT_d)" && make bonus
 	mkdir $(TEST_d)
-	mv $(SUBMIT_d)$(NAME) $(TEST_d)
-	mv $(SUBMIT_d)$(BONUS_NAME) $(TEST_d)
-	cp $(STDSRC_PASS)* $(TEST_d)
+	cp -rf $(SUBMIT_d)$(ACHIEV0) $(TEST_d)
+	cp -rf $(SUBMIT_d)$(ACHIEV1) $(TEST_d)
+	cp -rf $(SUBMIT_d)$(ACHIEV0b) $(TEST_d)
+	cp -rf $(SUBMIT_d)$(ACHIEV1b) $(TEST_d)
 
 fclean :
 	rm -rf $(SUBMIT_d)
