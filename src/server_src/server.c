@@ -22,14 +22,14 @@ int main (void)
 //TEST
 		while (g_cli.request && !g_cli.is_sig)
 		{
-t_req *j;
-j = g_cli.request;
-printf("*");
-while (j)
-{
-printf("->%d", j->pid);
-j = j->next;
-}TEST
+//t_req *j;
+//j = g_cli.request;
+//printf("*");
+//while (j)
+//{
+//printf("->%d", j->pid);
+//j = j->next;
+//}TEST
 			reserror(&opn);/* 何らかな問題あり 線形リストをうまく扱えていない いや、自分のpidがある */
 			sleep(1);
 		}
