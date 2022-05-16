@@ -22,6 +22,7 @@ typedef struct s_request
 typedef struct s_clients
 {
 	int					is_sig;
+	pid_t				me;
 	struct s_request	*request;
 }	t_cli;
 

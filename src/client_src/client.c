@@ -9,14 +9,15 @@ void showhash(uint8_t *hash)/* test */
     return ;
 }
 
-void	send(pid_t	pid, char *s, size_t l, int	spd);
-void	connect(pid_t	pid);
+void	send(char *s, size_t l, int	spd);
+void	connect(void);
 void	readin(size_t	len, t_str	*r);
 void	treat_to_send(t_str	*s);
-void	sending(pid_t	pid, t_str	*s);
+void	sending(t_str	*s);
 int speed(int flag);
+int	isnt_correct_num(char *s);
 
-int g_result = NOSIG;
+t_info g_;
 
 void act(int signo)
 {
@@ -24,59 +25,77 @@ void act(int signo)
 	if (signo == SIGUSR1)
 {
 TEST
-		g_result = SUCCESS;
+		g_.result = SUCCESS;
 }
 	else if (signo == SIGUSR2)
 {
 TEST
-		g_result = FAIL;
+		g_.result = FAIL;
 }
 	return ;
 }
 
 int main (int argc, char *argv[])
 {
-	pid_t	pid;
 	t_str	s;
 
-TESTn("pid", getpid())
-	if (argc != 2/*  || isnt_correct_num(argv[2]) */)
+//TESTn("pid", getpid())
+	if (argc != 2 || isnt_correct_num(argv[1]))
 	{
 		write(STDOUT_FILENO, "Not a valid PID\n", 16);
 		return (1);
 	}
-	pid = atoi(argv[1]);
+	g_.result = NOSIG;
+	g_.pid = atoi(argv[1]);
 	signal(SIGUSR1, act);
 	signal(SIGUSR2, act);
-	connect(pid);
+	connect();
 	while (1)
 	{
-TEST
+//TEST
 		readin(HEADER_SIZE, &s);
-TEST
+//TEST
 		treat_to_send(&s);
-TEST
-		sending(pid, &s);
-TEST
+//TEST
+		sending(&s);
+//TEST
 	}
 	return(0);
 }
 
-void	connect(pid_t	pid)
+int	isnt_correct_num(char *s)
+{
+	size_t	l;
+
+	l = 0;
+	while (s[l])
+	{
+		if (!ft_isdigit(s[l]))
+			return (1);
+		l++;
+	}
+	if (l > 10)
+		return (1);
+	else if (l < 10)
+		return (0);
+	return (ft_memcmp(s, "2147483647", 10) > 0);
+}
+
+void	connect(void)
 {
 	int spd;
 	char blank[BUFSIZE];
 	size_t	i;
 
-	g_result = NOSIG;
+	g_.result = NOSIG;
 	bzero(blank, BUFSIZE);
 	i = HEADER_SIZE;
 	memcpy(blank + SHA256LEN, &i, sizeof(size_t));
 	sha256(blank + SHA256LEN ,sizeof(size_t) , (uint8_t *)blank);
-	while(g_result != SUCCESS)
+	while(g_.result != SUCCESS)
 	{
 
-		g_result = NOSIG;
+		g_.result = NOSIG;
 		spd = speed(CONNECT);
 		if (spd < 0)
 		{
@@ -84,10 +103,10 @@ void	connect(pid_t	pid)
 			write(STDOUT_FILENO, "Connect error\n", 14);
 			exit(1);
 		}
-		send(pid, blank, HEADER_SIZE, spd);
-		if (g_result == NOSIG)
+		send(blank, HEADER_SIZE, spd);
+		if (g_.result == NOSIG)
 			sleep(4);
-		if (g_result == NOSIG)
+		if (g_.result == NOSIG)
 		{
 //TEST
 			write(STDOUT_FILENO, "Connect error\n", 14);
@@ -127,20 +146,20 @@ void	readin(size_t	len, t_str	*r)
 
 void	treat_to_send(t_str	*s)
 {
-TESTn("s->l", s->l)
+//TESTn("s->l", s->l)
 	memcpy(s->s + SHA256LEN, &s->l, sizeof(size_t));
 	sha256(s->s + SHA256LEN, s->l - SHA256LEN, (uint8_t *)(s->s));
 	return ;
 }
 
-void	sending(pid_t	pid, t_str	*s)
+void	sending(t_str	*s)
 {
 	int spd;
 
-	g_result = NOSIG;
-	while(g_result != SUCCESS)
+	g_.result = NOSIG;
+	while(g_.result != SUCCESS)
 	{
-		g_result = NOSIG;
+		g_.result = NOSIG;
 		spd = speed(GET);
 		if (spd < 0)
 		{
@@ -148,10 +167,10 @@ void	sending(pid_t	pid, t_str	*s)
 			free (s->s);
 			exit(1);
 		}
-		send(pid, s->s, s->l, spd);
-		if (g_result == NOSIG)
-			usleep(100000);
-		if (g_result == SUCCESS)
+		send(s->s, s->l, spd);
+		if (g_.result == NOSIG)
+			sleep(4);
+		if (g_.result == SUCCESS)
 			speed(SUCCESS);
 		else
 			speed(FAIL);
@@ -162,66 +181,50 @@ void	sending(pid_t	pid, t_str	*s)
 
 int speed(int flag)
 {
-	static int base = 0;
-	static int type[4];
-	static int prev;
-	int i;
+	static int base = 1;
+	static int error = 0;
 
-	if (!base)
-	{
-		i = 0;
-		prev = 1;
-		base = 1U;
-		while (i < 4)
-		{
-			type[i] = 2;
-			i++;
-		}
-		type[1] = 3;
-	}
 	if (flag == SUCCESS)
 	{
-		type[prev]++;
-		type[prev] %= 5;
+		if (error > 1)
+		{
+			base = 1;
+			connect();
+		}
+		error = 0;
 	}
 	else if (flag == FAIL)
-		type[prev]--;
+		error++;
 	else if (flag == CONNECT)
 	{
+		error = 0;
 		base <<= 1;
 		if (base > 100000)
 			return (-1);
-		return (base << 1);
+		return (base);
 	}
-	i = 0;
-	prev = i;
-	while (i < 4)
-	{
-		if (type[i] > type[prev])
-			prev = i;
-		i++;
-	}
-	if (type[prev] < -2)
-		return (-1);
-	return (base << prev);
+	if (error > 5)
+		return(-1);
+	return (base << ((error / 2) + 1));
 }
 
-void	send(pid_t	pid, char *s, size_t l, int	spd)
+void	send(char *s, size_t l, int	spd)
 {
 	uint8_t	b;
 	size_t	B;
 
 	b = 1U;
 	B = 0;
-/* showhash((uint8_t *)(s));  */TESTn("spd", spd)
-TESTn("l", l)
-	while(B < l)
+//* showhash((uint8_t *)(s));  */
+TESTn("spd", spd)
+//TESTn("l", l)
+	while(B < l && g_.result != SUCCESS)
 	{
 		usleep(spd);
 		if (s[B] & b)
-			kill(pid, SIGUSR1);
+			kill(g_.pid, SIGUSR1);
 		else
-			kill(pid, SIGUSR2);
+			kill(g_.pid, SIGUSR2);
 		b <<= 1;
 		if (b == 0)
 		{

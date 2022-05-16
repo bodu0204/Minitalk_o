@@ -24,7 +24,7 @@ void	act(int sig, siginfo_t *info, void *context)
 	t_req *c;
 
 	g_cli.is_sig++;
-	if (g_cli.is_sig > 1)
+	if (g_cli.is_sig != 1 || info->si_pid == g_cli.me)
 		return ;
 //TESTn("SIG", sig)
 //TESTn("PID", info->si_pid)
@@ -47,7 +47,7 @@ void	act(int sig, siginfo_t *info, void *context)
 //TEST
 	if (c->use >= HEADER_SIZE)
 	{
-		if (c->use == *((size_t *)((char *)c->content + SHA256LEN)))
+		if (c->use == *((size_t *)((char *)c->content + SHA256LEN)) && c->bit == 0)
 			if (check_hash(c))
 				output(c);// 標準出力 この項目を消す successを返す エラーの時この中でフリー exit する
 	}
@@ -149,8 +149,10 @@ void	output(t_req	*r)
 	int j;
 	t_req	*bf;
 
-TESTn("r->use - HEADER_SIZE", r->use - HEADER_SIZE)
-	j = write(STDOUT_FILENO, r->content + HEADER_SIZE, r->use - HEADER_SIZE);
+//TESTn("r->use - HEADER_SIZE", r->use - HEADER_SIZE)
+	j = 0;
+	if (r->use - HEADER_SIZE)
+		j = write(STDOUT_FILENO, r->content + HEADER_SIZE, r->use - HEADER_SIZE);
 	if (j < 0)
 	{
 		freeall();/*  */
@@ -158,11 +160,13 @@ TESTn("r->use - HEADER_SIZE", r->use - HEADER_SIZE)
 	}
 	j = r->pid;
 	if (g_cli.request == r)
+{
 		g_cli.request = r->next;
+}
 	else
 	{
 		bf = g_cli.request;
-		while (bf->next != bf)
+		while (bf->next != r)
 			bf = bf->next;
 		bf->next = r->next;
 	}
@@ -176,8 +180,8 @@ int check_hash(t_req	*r)
 	uint8_t hash[SHA256LEN];
 
 	sha256(r->content + SHA256LEN, r->use - SHA256LEN, hash);
-showhash(hash);TEST
-showhash((uint8_t *)(r->content));TEST
+//showhash(hash);TEST
+//showhash((uint8_t *)(r->content));TEST
 	return (!memcmp(r->content, hash, SHA256LEN));
 }
 

@@ -23,5 +23,15 @@ typedef struct s_string
 	size_t	l;
 }	t_str;
 
+typedef struct s_information
+{
+	int result;
+	pid_t	pid;
+}	t_info;
+
 void	sha256(const void *data, size_t len, uint8_t *hash);
+
+int	ft_isdigit(int	c);
+int		ft_memcmp(const void *s1, const void *s2, size_t n);
+
 #endif
