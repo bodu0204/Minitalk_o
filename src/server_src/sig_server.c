@@ -22,7 +22,8 @@ void	act(int sig, siginfo_t *info, void *context)
 	more_mem(c);
 	if (c->use >= HEADER_SIZE)
 	{
-		if (c->use == *((size_t *)((char *)c->content + SHA256LEN)) && c->bit == 0)
+		if (c->use == *((size_t *)((char *)c->content + SHA256LEN)) \
+		&& c->bit == 0)
 			if (check_hash(c))
 				output(c);
 	}
@@ -76,7 +77,8 @@ void	output(t_req	*r)
 
 	j = 0;
 	if (r->use - HEADER_SIZE)
-		j = write(STDOUT_FILENO, r->content + HEADER_SIZE, r->use - HEADER_SIZE);
+		j = write(STDOUT_FILENO, r->content + HEADER_SIZE, \
+		r->use - HEADER_SIZE);
 	if (j < 0)
 		error_exit(NULL);
 	j = r->pid;
