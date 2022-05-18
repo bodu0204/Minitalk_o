@@ -1,5 +1,6 @@
 #include "server.h"
 #include "debug.h"/* test */
+//int test_flag = 0;/* test */
 
 void showhash(uint8_t *hash)/* test */
 {
@@ -23,6 +24,10 @@ void	act(int sig, siginfo_t *info, void *context)
 {
 	t_req *c;
 
+//if (test_flag)
+//{
+//TEST
+//}
 	g_cli.is_sig++;
 	if (g_cli.is_sig != 1 || info->si_pid == g_cli.me)
 		return ;
@@ -85,6 +90,7 @@ t_req	*mknwereq(pid_t	i)
 //}TEST
 //TESTn("mkPID", i)
 	r = calloc(sizeof(t_req), 1);/*  */
+//TESTp("malloc", r)
 	if (!r)
 	{
 		write(STDOUT_FILENO, "malloc error\n", 14);
@@ -94,6 +100,7 @@ t_req	*mknwereq(pid_t	i)
 	r->buf = BUFSIZE;
 	r->pid = i;
 	r->content = calloc(r->buf, sizeof(char));/*  */
+//TESTp("malloc", r->content)
 	if (!r->content)
 	{
 		write(STDOUT_FILENO, "malloc error\n", 14);
@@ -126,11 +133,13 @@ void more_mem(t_req	*r)
 	char	*new;
 	size_t	l;
 
+//test_flag = 1;
 	if (r->use + 1  >= r->buf)
 	{
 		l = r->buf;
 		r->buf <<= 1;
 		new = calloc(r->buf, sizeof(char));
+//TESTp("malloc", new)
 		if (!new)
 		{
 		write(STDOUT_FILENO, "malloc error\n", 14);
@@ -141,6 +150,7 @@ void more_mem(t_req	*r)
 		free(r->content);
 		r->content = new;
 	}
+//test_flag = 0;
 	return ;
 }
 
@@ -170,6 +180,7 @@ void	output(t_req	*r)
 			bf = bf->next;
 		bf->next = r->next;
 	}
+	free(r->content);
 	free(r);
 	kill(j, SIGUSR1);
 	return ;

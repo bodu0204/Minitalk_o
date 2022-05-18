@@ -1,0 +1,347 @@
+ryoakira@ryoakiranoMacBook-Pro Minitalk_o % ./test_case_0/client 40231
+[(client_src/client.c/219) send ]spd:2
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025f8240
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ef8180
+[(server_src/server.c/75) reserror ]->pid:40238
+[(client_src/client.c/32) act ]
+[(client_src/client.c/219) send ]spd:4
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025fc000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003efc000
+[(server_src/server.c/75) reserror ]->pid:40238
+[(client_src/client.c/32) act ]
+[(client_src/client.c/219) send ]spd:8
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025f8240
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ef8180
+[(server_src/server.c/75) reserror ]->pid:40238
+[(client_src/client.c/32) act ]
+[(client_src/client.c/219) send ]spd:16
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025f0000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ef0000
+[(server_src/server.c/75) reserror ]->pid:40238
+[(client_src/client.c/32) act ]
+[(client_src/client.c/219) send ]spd:32
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025f4000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ef4000
+[(server_src/server.c/75) reserror ]->pid:40238
+[(client_src/client.c/32) act ]
+[(client_src/client.c/219) send ]spd:64
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025e8000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ee8000
+[(client_src/client.c/27) act ]
+gfdfghkgjhjgyyiukhj,gh
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025f0000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ef0000
+[(server_src/sig_server.c/142) more_mem ]malloc:0x6000005f8080
+gfdfghkgjhjgyyiukhj,gh
+[(client_src/client.c/27) act ]
+ggjgykfhjgfxdfyjhn
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025f8240
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ef8180
+ggjgykfhjgfxdfyjhn
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025f0000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ef0000
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025f0000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ef0040
+
+[(client_src/client.c/27) act ]
+hgfdsertyuojhytuyihkj,ghmhjlk.bhj;l.j
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025f0000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ef0080
+[(server_src/sig_server.c/142) more_mem ]malloc:0x6000005fc000
+hgfdsertyuojhytuyihkj,ghmhjlk.bhj;l.j
+[(client_src/client.c/27) act ]
+fsrtrytuyiujkhjgfhdtytuyiuojkhjghfjyuyiuo;ljkhjghkguyiuoi;ljkhjghukyiuokjhjghftyuljhghikjhghghfdersfghiiukjmhnbfsrtujghfgdtuyjhghfgftjhghghghkjghghkh
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025fc000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003efc000
+[(server_src/sig_server.c/142) more_mem ]malloc:0x6000005f0000
+[(server_src/sig_server.c/142) more_mem ]malloc:0x6000017f8000
+fsrtrytuyiujkhjgfhdtytuyiuojkhjghfjyuyiuo;ljkhjghkguyiuoi;ljkhjghukyiuokjhjghftyuljhghikjhghghfdersfghiiukjmhnbfsrtujghfgdtuyjhghfgftjhghghghkjghghkh
+[(client_src/client.c/27) act ]
+jkkkkkkkkkkkkkkkknmbghfytuyiuolj,mnbvgftyuiytrdqwertiopl,mnbgvcxdsw2sdcvbnjop098765432123456yujnbvfgyh
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025e8000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ee8040
+[(server_src/sig_server.c/142) more_mem ]malloc:0x6000005f8100
+[(server_src/sig_server.c/142) more_mem ]malloc:0x6000017fc000
+jkkkkkkkkkkkkkkkknmbghfytuyiuolj,mnbvgftyuiytrdqwertiopl,mnbgvcxdsw2sdcvbnjop098765432123456yujnbvfgyh
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025e8000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ee8040
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025e8000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ee8080
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025fc000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003efc000
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025fc000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003efc040
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025f0000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ef0080
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025e8000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ee80c0
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025f8240
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ef81c0
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025ec000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003eec000
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025f8240
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ef8200
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025f8240
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ef8240
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025f0000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ef00c0
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025fc000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003efc080
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025fc000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003efc0c0
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025f8240
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ef8280
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025fc000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003efc100
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025fc000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003efc140
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025f8240
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ef82c0
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025e8000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ee8100
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025fc000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003efc180
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025f0000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ef0100
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025f8240
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ef8300
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025f0000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ef0140
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025e8000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ee8140
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025f8240
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ef8340
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025e8000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ee8180
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025f0000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ef0180
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025fc000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003efc1c0
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025e8000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ee81c0
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025f8240
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ef8380
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025f0000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ef01c0
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025f0000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ef0200
+
+[(client_src/client.c/27) act ]
+
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025fc000
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003efc200
+
+[(client_src/client.c/27) act ]
+kjhgrt678iol,kmnhgjiylhkj,nmo;ilkjhgyttuyiyyuiy
+[(client_src/client.c/219) send ]spd:128
+[(server_src/sig_server.c/93) mknwereq ]malloc:0x6000025f8240
+[(server_src/sig_server.c/103) mknwereq ]malloc:0x600003ef83c0
+[(server_src/sig_server.c/142) more_mem ]malloc:0x6000005f4000
+kjhgrt678iol,kmnhgjiylhkj,nmo;ilkjhgyttuyiyyuiy
+[(client_src/client.c/27) act ]
+^C
+ryoakira@ryoakiranoMacBook-Pro Minitalk_o % cd test_case_0
+ryoakira@ryoakiranoMacBook-Pro test_case_0 % leaks server
+Process:         server [40231]
+Path:            /Users/USER/Desktop/*/server
+Load Address:    0x10c7ee000
+Identifier:      server
+Version:         ???
+Code Type:       X86-64
+Platform:        macOS
+Parent Process:  zsh [9369]
+
+Date/Time:       2022-05-18 16:16:09.232 +0900
+Launch Time:     2022-05-18 16:14:35.031 +0900
+OS Version:      macOS 12.2.1 (21D62)
+Report Version:  7
+Analysis Tool:   /usr/bin/leaks
+
+Physical footprint:         376K
+Physical footprint (peak):  376K
+----
+
+leaks Report Version: 4.0
+Process 40231: 206 nodes malloced for 15 KB
+Process 40231: 41 leaks for 3200 total leaked bytes.
+
+    41 (3.12K) << TOTAL >>
+      1 (256 bytes) ROOT LEAK: 0x6000017f8000 [256]
+      1 (256 bytes) ROOT LEAK: 0x6000017fc000 [256]
+      1 (128 bytes) ROOT LEAK: 0x6000005f4000 [128]
+      1 (128 bytes) ROOT LEAK: 0x6000005f8080 [128]
+      1 (128 bytes) ROOT LEAK: 0x6000005fc000 [128]
+      1 (64 bytes) ROOT LEAK: 0x600003ee8000 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003ee8040 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003ee8080 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003ee80c0 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003ee8100 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003ee8140 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003ee8180 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003ee81c0 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003eec000 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003ef0000 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003ef0040 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003ef0080 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003ef00c0 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003ef0100 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003ef0140 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003ef0180 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003ef01c0 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003ef0200 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003ef8180 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003ef81c0 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003ef8200 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003ef8240 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003ef8280 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003ef82c0 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003ef8300 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003ef8340 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003ef8380 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003efc000 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003efc040 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003efc080 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003efc0c0 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003efc100 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003efc140 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003efc180 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003efc1c0 [64]
+      1 (64 bytes) ROOT LEAK: 0x600003efc200 [64]
+
+ryoakira@ryoakiranoMacBook-Pro test_case_0 %

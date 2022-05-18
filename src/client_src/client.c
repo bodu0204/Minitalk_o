@@ -24,12 +24,12 @@ void act(int signo)
 //TEST
 	if (signo == SIGUSR1)
 {
-TEST
+//TEST
 		g_.result = SUCCESS;
 }
 	else if (signo == SIGUSR2)
 {
-TEST
+//TEST
 		g_.result = FAIL;
 }
 	return ;
@@ -216,7 +216,7 @@ void	send(char *s, size_t l, int	spd)
 	b = 1U;
 	B = 0;
 //* showhash((uint8_t *)(s));  */
-TESTn("spd", spd)
+//TESTn("spd", spd)
 //TESTn("l", l)
 	while(B < l && g_.result != SUCCESS)
 	{
