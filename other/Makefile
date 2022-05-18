@@ -11,7 +11,7 @@ SERVERb_d	= server_src_bonus/
 SHA256b_d	= sha256_src_bonus/
 CLIENT_src	= client.c client_util.c
 SERVER_src	= server.c sig_server.c sig_server_util.c
-SHA256_src	= sha256.c sha256_done.c sha256_hash.c sha256_init.c sha256_utilA.c sha256_utilB.c tool.c
+SHA256_src	= sha256.c sha256_done.c sha256_hash.c sha256_init.c sha256_utilA.c sha256_util.c tool.c
 CLIENTb_src	=
 SERVERb_src	=
 SHA256b_src	=
@@ -46,6 +46,13 @@ $(ACHIEV1) : $(PRINTF_a) $(SERVER_d)$(SERVER_h) $(SHA256_d)$(SHA256_h) $(addpref
 
 bonus : $(PRINTF_a) $(HEADER_b) $(SRC_b)
 	$(CC) $(CFLAGS) $(SRC_b) $(PRINTF_a) -o $(BONUSNAME)
+
+$(ACHIEV0b) : $(PRINTF_a) $(CLIENTb_d)$(CLIENTb_h) $(SHA256b_d)$(SHA256b_h) $(addprefix $(CLIENTb_d),$(CLIENTb_o)) $(addprefix $(SHA256b_d),$(SHA256b_o))
+	$(CC) $(CFLAGS) $(addprefix $(CLIENTb_d),$(CLIENTb_o)) $(addprefix $(SHA256b_d),$(SHA256b_o)) $(PRINTF_a) -o $(ACHIEV0b)
+
+$(ACHIEV1b) : $(PRINTF_a) $(SERVERb_d)$(SERVERb_h) $(SHA256b_d)$(SHA256b_h) $(addprefix $(SERVERb_d),$(SERVERb_o)) $(addprefix $(SHA256b_d),$(SHA256b_o))
+	$(CC) $(CFLAGS) $(addprefix $(SERVERb_d),$(SERVERb_o)) $(addprefix $(SHA256b_d),$(SHA256b_o)) $(PRINTF_a) -o $(ACHIEV1b)
+
 
 .c.o :
 	$(CC) $(CFLAGS) -c $< -o $(basename $<).o
