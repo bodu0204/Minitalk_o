@@ -5,7 +5,7 @@ void	reserror(void);
 
 t_cli	g_cli = {0};
 
-int	main (void)
+int	main(void)
 {
 	struct sigaction	opn;
 
