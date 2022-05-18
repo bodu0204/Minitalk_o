@@ -12,15 +12,15 @@ SHA256b_d	= sha256_src_bonus/
 CLIENT_src	= client.c client_util.c
 SERVER_src	= server.c sig_server.c sig_server_util.c
 SHA256_src	= sha256.c sha256_done.c sha256_hash.c sha256_init.c sha256_utilA.c sha256_util.c tool.c
-CLIENTb_src	=
-SERVERb_src	=
-SHA256b_src	=
+CLIENTb_src	= client_bonus.c client_util_bonus.c
+SERVERb_src	= server_bonus.c sig_server_bonus.c sig_server_util_bonus.c
+SHA256b_src	= sha256_bonus.c sha256_done_bonus.c sha256_hash_bonus.c sha256_init_bonus.c sha256_utilA_bonus.c sha256_utilB_bonus.c tool_bonus.c
 CLIENT_h	= client.h
 SERVER_h	= server.h
 SHA256_h	= sha256.h
-CLIENTb_h	=
-SERVERb_h	=
-SHA256b_h	=
+CLIENTb_h	= client_bonus.h
+SERVERb_h	= server_bonus.h
+SHA256b_h	= sha256_bonus.h
 CLIENT_o	= $(CLIENT_src:%.c=%.o)
 SERVER_o	= $(SERVER_src:%.c=%.o)
 SHA256_o	= $(SHA256_src:%.c=%.o)
