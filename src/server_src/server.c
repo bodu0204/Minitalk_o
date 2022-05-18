@@ -1,6 +1,5 @@
 #include "server.h"
-#include "debug.h"/* test */
-#include <stdio.h>
+#include <stdio.h>/*  */
 void	setact(struct sigaction	*a);
 void	reserror(struct sigaction	*opn);
 

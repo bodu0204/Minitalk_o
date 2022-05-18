@@ -12,25 +12,26 @@ void	sha256(const void *data, size_t len, uint8_t *hash)
 	return ;
 }
 
+/*
+void showhash(uint8_t *hash);
+#include <stdio.h>
 
-//void showhash(uint8_t *hash);
-//#include <stdio.h>
-//
-//int main(void)
-//{
-//    char *data = "";
-//    uint8_t hash[32];
-//    bzero(hash, sizeof(hash));
-//    sha256(data, strlen(data), hash);
-//    showhash(hash);
-//    return (0);
-//}
-//
-//void showhash(uint8_t *hash)
-//{
-//    for (size_t i = 0; i < 32; i++){
-//        printf("%02hhx",hash[i]);
-//    }
-//    printf("\n");
-//    return ;
-//}
+int main(void)
+{
+    char *data = "";
+    uint8_t hash[32];
+    bzero(hash, sizeof(hash));
+    sha256(data, strlen(data), hash);
+    showhash(hash);
+    return (0);
+}
+
+void showhash(uint8_t *hash)
+{
+    for (size_t i = 0; i < 32; i++){
+        printf("%02hhx",hash[i]);
+    }
+    printf("\n");
+    return ;
+}
+ */

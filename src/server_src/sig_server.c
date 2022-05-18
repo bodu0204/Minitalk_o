@@ -1,12 +1,5 @@
 #include "server.h"
 
-t_req	*search_client(pid_t	i);
-t_req	*mknwereq(pid_t	i);
-void	more_mem(t_req	*r);
-void	output(t_req	*r);
-int		check_hash(t_req	*r);
-void	error_exit(char *msg);
-
 extern t_cli	g_cli;
 
 void	act(int sig, siginfo_t *info, void *context)
@@ -76,25 +69,6 @@ t_req	*mknwereq(pid_t	i)
 	return (r);
 }
 
-void more_mem(t_req	*r)
-{
-	char	*new;
-	size_t	l;
-
-	if (r->use + 1  >= r->buf)
-	{
-		l = r->buf;
-		r->buf <<= 1;
-		new = calloc(r->buf, sizeof(char));
-		if (!new)
-			error_exit("malloc error\n");
-		memcpy(new, r->content, l);
-		free(r->content);
-		r->content = new;
-	}
-	return ;
-}
-
 void	output(t_req	*r)
 {
 	int j;
@@ -121,14 +95,6 @@ void	output(t_req	*r)
 	free(r);
 	kill(j, SIGUSR1);
 	return ;
-}
-
-int check_hash(t_req	*r)
-{
-	uint8_t hash[SHA256LEN];
-
-	sha256(r->content + SHA256LEN, r->use - SHA256LEN, hash);
-	return (!memcmp(r->content, hash, SHA256LEN));
 }
 
 void	error_exit(char *msg)

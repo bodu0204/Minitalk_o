@@ -25,6 +25,13 @@ typedef struct s_clients
 	struct s_request	*request;
 }	t_cli;
 
+t_req	*search_client(pid_t	i);
+t_req	*mknwereq(pid_t	i);
+void	more_mem(t_req	*r);
+void	output(t_req	*r);
+int		check_hash(t_req	*r);
+void	error_exit(char *msg);
+
 void	act(int sig, siginfo_t *info, void *context);
 
 void	sha256(const void *data, size_t len, uint8_t *hash);
