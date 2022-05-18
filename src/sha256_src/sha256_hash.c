@@ -35,13 +35,9 @@ void	hash(t_sha *ctx)
 	{
 		memmove(ctx->W, ctx->W + 1, sizeof(uint32_t) * 16);
 		if (i < 16)
-		{
 			b8tob32(ctx->buf + (i * 4), ctx->W + 16);
-		}
 		else
-		{
 			ctx->W[16] = G1(ctx->W[14]) + ctx->W[9] + G0(ctx->W[1]) + ctx->W[0];
-		}
 		t[0] = hs[7] + S1(hs[4]) + Ch(hs[4], hs[5], hs[6]) \
 		+ ctx->K[i] + ctx->W[16];
 		t[1] = S0(hs[0]) + Ma(hs[0], hs[1], hs[2]);
