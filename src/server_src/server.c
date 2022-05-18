@@ -18,7 +18,7 @@ int	main(void)
 	{
 		while (g_cli.request && !g_cli.is_sig)
 		{
-			reserror(&opn);
+			reserror();
 			sleep(1);
 		}
 		if (!g_cli.request)
