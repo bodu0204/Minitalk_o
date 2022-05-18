@@ -54,12 +54,12 @@ file : fclean cloneprintf
 
 test : file
 	cd "$(SUBMIT_d)" && make all
-	#cd "$(SUBMIT_d)" && make bonus
+	cd "$(SUBMIT_d)" && make bonus
 	mkdir $(TEST_d)
 	cp -f $(SUBMIT_d)$(ACHIEV0) $(TEST_d)
 	cp -f $(SUBMIT_d)$(ACHIEV1) $(TEST_d)
-	#cp -f $(SUBMIT_d)$(ACHIEV0b) $(TEST_d)
-	#cp -f $(SUBMIT_d)$(ACHIEV1b) $(TEST_d)
+	cp -f $(SUBMIT_d)$(ACHIEV0b) $(TEST_d)
+	cp -f $(SUBMIT_d)$(ACHIEV1b) $(TEST_d)
 
 fclean :
 	rm -rf $(SUBMIT_d)
