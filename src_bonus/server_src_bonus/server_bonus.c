@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.c                                           :+:      :+:    :+:   */
+/*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ryoakira <ryoakira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 08:31:31 by ryoakira          #+#    #+#             */
-/*   Updated: 2022/05/19 08:31:32 by ryoakira         ###   ########.fr       */
+/*   Updated: 2022/05/19 08:35:43 by ryoakira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "server.h"
+#include "server_bonus.h"
 void	setact(struct sigaction	*a);
 void	reserror(void);
 

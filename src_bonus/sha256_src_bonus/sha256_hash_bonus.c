@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sha256_hash.c                                      :+:      :+:    :+:   */
+/*   sha256_hash_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ryoakira <ryoakira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 08:32:03 by ryoakira          #+#    #+#             */
-/*   Updated: 2022/05/19 08:32:04 by ryoakira         ###   ########.fr       */
+/*   Updated: 2022/05/19 08:37:15 by ryoakira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"sha256.h"
+#include"sha256_bonus.h"
 void	hash1(t_sha *ctx, uint32_t *hs);
 
 void	sha256_hash(t_sha *ctx, const void *data, size_t len)

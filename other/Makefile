@@ -44,8 +44,7 @@ $(ACHIEV0) : $(PRINTF_a) $(CLIENT_d)$(CLIENT_h) $(SHA256_d)$(SHA256_h) $(addpref
 $(ACHIEV1) : $(PRINTF_a) $(SERVER_d)$(SERVER_h) $(SHA256_d)$(SHA256_h) $(addprefix $(SERVER_d),$(SERVER_o)) $(addprefix $(SHA256_d),$(SHA256_o))
 	$(CC) $(CFLAGS) $(addprefix $(SERVER_d),$(SERVER_o)) $(addprefix $(SHA256_d),$(SHA256_o)) $(PRINTF_a) -o $(ACHIEV1)
 
-bonus : $(PRINTF_a) $(HEADER_b) $(SRC_b)
-	$(CC) $(CFLAGS) $(SRC_b) $(PRINTF_a) -o $(BONUSNAME)
+bonus : $(ACHIEV0b) $(ACHIEV1b)
 
 $(ACHIEV0b) : $(PRINTF_a) $(CLIENTb_d)$(CLIENTb_h) $(SHA256b_d)$(SHA256b_h) $(addprefix $(CLIENTb_d),$(CLIENTb_o)) $(addprefix $(SHA256b_d),$(SHA256b_o))
 	$(CC) $(CFLAGS) $(addprefix $(CLIENTb_d),$(CLIENTb_o)) $(addprefix $(SHA256b_d),$(SHA256b_o)) $(PRINTF_a) -o $(ACHIEV0b)
@@ -70,6 +69,12 @@ $(PRINTF_a) : $(PRINTF_d)
 
 clean :
 	cd "$(PRINTF_d)" && make clean
+	rm -f $(addprefix $(CLIENT_d),$(CLIENT_o))
+	rm -f $(addprefix $(SERVER_d),$(SERVER_o))
+	rm -f $(addprefix $(SHA256_d),$(SHA256_o))
+	rm -f $(addprefix $(CLIENTb_d),$(CLIENTb_o))
+	rm -f $(addprefix $(SERVERb_d),$(SERVERb_o))
+	rm -f $(addprefix $(SHA256b_d),$(SHA256b_o))
 	rm -f $(PRINTF_a)
 
 fclean : clean

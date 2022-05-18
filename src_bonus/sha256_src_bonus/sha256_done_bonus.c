@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sha256_done.c                                      :+:      :+:    :+:   */
+/*   sha256_done_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ryoakira <ryoakira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 08:31:58 by ryoakira          #+#    #+#             */
-/*   Updated: 2022/05/19 08:31:59 by ryoakira         ###   ########.fr       */
+/*   Updated: 2022/05/19 08:37:05 by ryoakira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"sha256.h"
+#include"sha256_bonus.h"
 void	sha256_done1(t_sha *ctx, uint8_t *hdst);
 
 void	sha256_done(t_sha *ctx, uint8_t *hdst)

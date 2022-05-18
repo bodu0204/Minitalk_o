@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sha256.h                                           :+:      :+:    :+:   */
+/*   sha256_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ryoakira <ryoakira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 08:32:42 by ryoakira          #+#    #+#             */
-/*   Updated: 2022/05/19 08:32:43 by ryoakira         ###   ########.fr       */
+/*   Updated: 2022/05/19 08:39:19 by ryoakira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHA256_H
-# define SHA256_H
+#ifndef SHA256_BONUS_H
+# define SHA256_BONUS_H
 # include <stddef.h>
 # include <stdint.h>
 # include <string.h>

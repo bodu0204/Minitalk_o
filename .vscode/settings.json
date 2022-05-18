@@ -3,7 +3,11 @@
         "stdio.h": "c",
         "debug.h": "c",
         "atomic": "c",
-        "bitset": "c"
+        "bitset": "c",
+        "server_bonus.h": "c",
+        "unistd.h": "c",
+        "stdint.h": "c",
+        "stddef.h": "c"
     },
     "C_Cpp.errorSquiggles": "Disabled"
 }

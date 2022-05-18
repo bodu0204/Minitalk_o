@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   server.h                                           :+:      :+:    :+:   */
+/*   client_bonus.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ryoakira <ryoakira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/19 08:31:39 by ryoakira          #+#    #+#             */
-/*   Updated: 2022/05/19 08:31:40 by ryoakira         ###   ########.fr       */
+/*   Created: 2022/05/19 08:31:19 by ryoakira          #+#    #+#             */
+/*   Updated: 2022/05/19 08:39:08 by ryoakira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERVER_H
-# define SERVER_H
+#ifndef CLIENT_BONUS_H
+# define CLIENT_BONUS_H
 # include <unistd.h>
 # include <signal.h>
 # include <stdlib.h>
@@ -19,38 +19,42 @@
 # define SHA256LEN 32
 # define BUFSIZE 64
 # define HEADER_SIZE 40
-
-typedef struct s_request
+enum
 {
-	int					pid;
-	char				*content;
-	size_t				buf;
-	size_t				use;
-	unsigned int		bit;
-	struct s_request	*next;
-}	t_req;
+	NOSIG,
+	SUCCESS,
+	FAIL,
+	CONNECT,
+	GET,
+};
 
-typedef struct s_clients
+typedef struct s_string
 {
-	int					is_sig;
-	pid_t				me;
-	struct s_request	*request;
-}	t_cli;
+	char	*s;
+	size_t	l;
+}	t_str;
 
-t_req	*search_client(pid_t	i);
-t_req	*mknwereq(pid_t	i);
-void	more_mem(t_req	*r);
-void	output(t_req	*r);
-int		check_hash(t_req	*r);
-void	error_exit(char *msg);
+typedef struct s_information
+{
+	int		result;
+	pid_t	pid;
+}	t_info;
 
-void	act(int sig, siginfo_t *info, void *context);
+void	send(char *s, size_t l, int	spd);
+void	connect(void);
+void	readin(size_t	len, t_str	*r);
+void	treat_to_send(t_str	*s);
+void	sending(t_str	*s);
+int		speed(int flag);
+int		isnt_correct_num(char *s);
+void	msg_exit(char *s);
 
 void	sha256(const void *data, size_t len, uint8_t *hash);
 
-int		ft_printf(const char	*fmt, ...);
+int		ft_isdigit(int	c);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
-void	*ft_calloc(size_t count, size_t size);
+int		ft_atoi(const char *str);
+void	ft_bzero(void *s, size_t n);
 size_t	ft_strlen(const char *str);
 #endif
