@@ -4,9 +4,9 @@
 # include <signal.h>
 # include <stdlib.h>
 # include <string.h>
-#define SHA256LEN 32
-#define BUFSIZE 64
-#define HEADER_SIZE 40
+# define SHA256LEN 32
+# define BUFSIZE 64
+# define HEADER_SIZE 40
 
 typedef struct s_request
 {
