@@ -1,13 +1,4 @@
 #include "client.h"
-#include "debug.h"/* test */
-
-void showhash(uint8_t *hash)/* test */
-{
-    for (size_t i = 0; i < 32; i++){
-        printf("%02hhx",hash[i]);
-    }
-    return ;
-}
 
 void	send(char *s, size_t l, int	spd);
 void	connect(void);
@@ -21,17 +12,10 @@ t_info g_;
 
 void act(int signo)
 {
-//TEST
 	if (signo == SIGUSR1)
-{
-//TEST
 		g_.result = SUCCESS;
-}
 	else if (signo == SIGUSR2)
-{
-//TEST
 		g_.result = FAIL;
-}
 	return ;
 }
 
@@ -39,7 +23,6 @@ int main (int argc, char *argv[])
 {
 	t_str	s;
 
-//TESTn("pid", getpid())
 	if (argc != 2 || isnt_correct_num(argv[1]))
 	{
 		write(STDOUT_FILENO, "Not a valid PID\n", 16);
@@ -52,13 +35,9 @@ int main (int argc, char *argv[])
 	connect();
 	while (1)
 	{
-//TEST
 		readin(HEADER_SIZE, &s);
-//TEST
 		treat_to_send(&s);
-//TEST
 		sending(&s);
-//TEST
 	}
 	return(0);
 }
@@ -99,7 +78,6 @@ void	connect(void)
 		spd = speed(CONNECT);
 		if (spd < 0)
 		{
-//TEST
 			write(STDOUT_FILENO, "Connect error\n", 14);
 			exit(1);
 		}
@@ -108,7 +86,6 @@ void	connect(void)
 			sleep(4);
 		if (g_.result == NOSIG)
 		{
-//TEST
 			write(STDOUT_FILENO, "Connect error\n", 14);
 			exit(1);
 		}
@@ -127,7 +104,6 @@ void	readin(size_t	len, t_str	*r)
 		write(STDOUT_FILENO, "Read error\n", 11);
 		exit(1);
 	}
-//TESTn("s[i]", s[i])
 	if (s[i - 1] == '\n')
 	{
 		r->s = malloc(len + i);
@@ -146,7 +122,6 @@ void	readin(size_t	len, t_str	*r)
 
 void	treat_to_send(t_str	*s)
 {
-//TESTn("s->l", s->l)
 	memcpy(s->s + SHA256LEN, &s->l, sizeof(size_t));
 	sha256(s->s + SHA256LEN, s->l - SHA256LEN, (uint8_t *)(s->s));
 	return ;
@@ -215,9 +190,6 @@ void	send(char *s, size_t l, int	spd)
 
 	b = 1U;
 	B = 0;
-//* showhash((uint8_t *)(s));  */
-//TESTn("spd", spd)
-//TESTn("l", l)
 	while(B < l && g_.result != SUCCESS)
 	{
 		usleep(spd);

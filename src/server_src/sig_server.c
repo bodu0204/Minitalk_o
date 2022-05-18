@@ -1,21 +1,11 @@
 #include "server.h"
-#include "debug.h"/* test */
-//int test_flag = 0;/* test */
-
-void showhash(uint8_t *hash)/* test */
-{
-    for (size_t i = 0; i < 32; i++){
-        printf("%02hhx",hash[i]);
-    }
-    return ;
-}
 
 t_req	*search_client(pid_t	i);
 t_req	*mknwereq(pid_t	i);
 void more_mem(t_req	*r);
 void	output(t_req	*r);
 int check_hash(t_req	*r);
-void	freeall(void);
+void	error_exit(char *msg);
 
 
 extern t_cli	g_cli;
@@ -24,39 +14,26 @@ void	act(int sig, siginfo_t *info, void *context)
 {
 	t_req *c;
 
-//if (test_flag)
-//{
-//TEST
-//}
 	g_cli.is_sig++;
 	if (g_cli.is_sig != 1 || info->si_pid == g_cli.me)
 		return ;
-//TESTn("SIG", sig)
-//TESTn("PID", info->si_pid)
 	(void)context;
-	c = search_client(info->si_pid); //エラーの時この中でフリー exit する
+	c = search_client(info->si_pid);
 	if (sig == SIGUSR1)
 		c->content[c->use] |= 1U << c->bit;
-//TESTn("c->bit", c->bit)
 	c->bit++;
 	if (c->bit >= 8)
 	{
 		c->use++;
 		c->bit = 0;
-//if (c->use == SHA256LEN)
-//{showhash((uint8_t *)(c->content));TEST}
-
-//TESTn("c->use", c->use)
 	}
-	more_mem(c);//エラーの時この中でフリー exit する
-//TEST
+	more_mem(c);
 	if (c->use >= HEADER_SIZE)
 	{
 		if (c->use == *((size_t *)((char *)c->content + SHA256LEN)) && c->bit == 0)
 			if (check_hash(c))
-				output(c);// 標準出力 この項目を消す successを返す エラーの時この中でフリー exit する
+				output(c);
 	}
-//TEST
 }
 
 t_req	*search_client(pid_t	i)
@@ -80,34 +57,14 @@ t_req	*mknwereq(pid_t	i)
 	t_req	*r;
 	t_req	*pre;
 
-//t_req *j;
-//j = g_cli.request;
-//printf("*");fflush(stdout);
-//while (j)
-//{
-//printf("->%d", j->pid);fflush(stdout);
-//j = j->next;
-//}TEST
-//TESTn("mkPID", i)
-	r = calloc(sizeof(t_req), 1);/*  */
-//TESTp("malloc", r)
+	r = calloc(sizeof(t_req), 1);
 	if (!r)
-	{
-		write(STDOUT_FILENO, "malloc error\n", 14);
-		freeall();
-		exit(1);
-	}
+		error_exit("malloc error\n");
 	r->buf = BUFSIZE;
 	r->pid = i;
-	r->content = calloc(r->buf, sizeof(char));/*  */
-//TESTp("malloc", r->content)
+	r->content = calloc(r->buf, sizeof(char));
 	if (!r->content)
-	{
-		write(STDOUT_FILENO, "malloc error\n", 14);
-		free(r);
-		freeall();/*  */
-		exit(1);
-	}
+		error_exit("malloc error\n");
 	if (!g_cli.request)
 		g_cli.request = r;
 	else
@@ -117,14 +74,6 @@ t_req	*mknwereq(pid_t	i)
 			pre = pre->next;
 		pre->next = r;
 	}
-//j = g_cli.request;
-//printf("*");fflush(stdout);
-//while (j)
-//{
-//printf("->%d", j->pid);fflush(stdout);
-//j = j->next;
-//}
-//TEST
 	return (r);
 }
 
@@ -133,24 +82,17 @@ void more_mem(t_req	*r)
 	char	*new;
 	size_t	l;
 
-//test_flag = 1;
 	if (r->use + 1  >= r->buf)
 	{
 		l = r->buf;
 		r->buf <<= 1;
 		new = calloc(r->buf, sizeof(char));
-//TESTp("malloc", new)
 		if (!new)
-		{
-		write(STDOUT_FILENO, "malloc error\n", 14);
-		freeall();
-		exit(1);
-		}
+			error_exit("malloc error\n");
 		memcpy(new, r->content, l);
 		free(r->content);
 		r->content = new;
 	}
-//test_flag = 0;
 	return ;
 }
 
@@ -159,15 +101,11 @@ void	output(t_req	*r)
 	int j;
 	t_req	*bf;
 
-//TESTn("r->use - HEADER_SIZE", r->use - HEADER_SIZE)
 	j = 0;
 	if (r->use - HEADER_SIZE)
 		j = write(STDOUT_FILENO, r->content + HEADER_SIZE, r->use - HEADER_SIZE);
 	if (j < 0)
-	{
-		freeall();/*  */
-		exit(1);
-	}
+		error_exit(NULL);
 	j = r->pid;
 	if (g_cli.request == r)
 {
@@ -191,16 +129,16 @@ int check_hash(t_req	*r)
 	uint8_t hash[SHA256LEN];
 
 	sha256(r->content + SHA256LEN, r->use - SHA256LEN, hash);
-//showhash(hash);TEST
-//showhash((uint8_t *)(r->content));TEST
 	return (!memcmp(r->content, hash, SHA256LEN));
 }
 
-void	freeall(void)
+void	error_exit(char *msg)
 {
 	t_req	*r;
 	t_req	*rr;
 
+	if (msg)
+		write(STDOUT_FILENO, msg, strlen(msg));
 	r = g_cli.request;
 	rr = r->next;
 	while (r)

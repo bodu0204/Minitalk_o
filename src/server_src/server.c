@@ -12,35 +12,20 @@ int main (void)
 
 	g_cli.me = getpid();
 	setact(&opn);
-//TEST
 	sigaction(SIGUSR1, &opn, NULL);
 	sigaction(SIGUSR2, &opn, NULL);
 	printf("PID:%d\n", g_cli.me);
-//TEST
 	while(1)
 	{
-//TEST
 		while (g_cli.request && !g_cli.is_sig)
 		{
-//t_req *j;
-//j = g_cli.request;
-//printf("*");
-//while (j)
-//{
-//printf("->%d", j->pid);
-//j = j->next;
-//}TEST
-			reserror(&opn);/* 何らかな問題あり 線形リストをうまく扱えていない いや、自分のpidがある */
+			reserror(&opn);
 			sleep(1);
 		}
 		if(!g_cli.request)
-{
-//TEST
 			pause();
-}
 		while(g_cli.is_sig)
 		{
-//TEST
 			g_cli.is_sig = 0;
 			usleep(10000);
 		}
@@ -72,6 +57,5 @@ void	reserror(struct sigaction	*opn)/*  */
 	free(c);
 	g_cli.is_sig = 0;
 	kill(i, SIGUSR2);
-//TESTn("->pid", i)
 	return ;
 }
