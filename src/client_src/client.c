@@ -1,8 +1,8 @@
 #include "client.h"
 
-t_info g_;
+t_info	g_;
 
-void act(int signo)
+void	act(int signo)
 {
 	if (signo == SIGUSR1)
 		g_.result = SUCCESS;
@@ -11,7 +11,7 @@ void act(int signo)
 	return ;
 }
 
-int main (int argc, char *argv[])
+int	main(int argc, char *argv[])
 {
 	t_str	s;
 
@@ -28,24 +28,22 @@ int main (int argc, char *argv[])
 		treat_to_send(&s);
 		sending(&s);
 	}
-	return(0);
+	return (0);
 }
-
 
 void	connect(void)
 {
-	int spd;
-	char blank[BUFSIZE];
+	int		spd;
+	char	blank[BUFSIZE];
 	size_t	i;
 
 	g_.result = NOSIG;
 	bzero(blank, BUFSIZE);
 	i = HEADER_SIZE;
 	memcpy(blank + SHA256LEN, &i, sizeof(size_t));
-	sha256(blank + SHA256LEN ,sizeof(size_t) , (uint8_t *)blank);
-	while(g_.result != SUCCESS)
+	sha256(blank + SHA256LEN, sizeof(size_t), (uint8_t *)blank);
+	while (g_.result != SUCCESS)
 	{
-
 		g_.result = NOSIG;
 		spd = speed(CONNECT);
 		if (spd < 0)
@@ -59,13 +57,12 @@ void	connect(void)
 	return ;
 }
 
-
 void	sending(t_str	*s)
 {
-	int spd;
+	int	spd;
 
 	g_.result = NOSIG;
-	while(g_.result != SUCCESS)
+	while (g_.result != SUCCESS)
 	{
 		g_.result = NOSIG;
 		spd = speed(GET);
@@ -87,7 +84,6 @@ void	sending(t_str	*s)
 	return ;
 }
 
-
 void	send(char *s, size_t l, int	spd)
 {
 	uint8_t	b;
@@ -95,7 +91,7 @@ void	send(char *s, size_t l, int	spd)
 
 	b = 1U;
 	B = 0;
-	while(B < l && g_.result != SUCCESS)
+	while (B < l && g_.result != SUCCESS)
 	{
 		usleep(spd);
 		if (s[B] & b)

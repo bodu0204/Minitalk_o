@@ -26,7 +26,6 @@ typedef struct s_information
 	pid_t	pid;
 }	t_info;
 
-
 void	send(char *s, size_t l, int	spd);
 void	connect(void);
 void	readin(size_t	len, t_str	*r);

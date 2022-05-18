@@ -1,6 +1,6 @@
 #include "client.h"
 
-extern t_info g_;
+extern t_info	g_;
 
 void	readin(size_t	len, t_str	*r)
 {
@@ -48,10 +48,10 @@ int	isnt_correct_num(char *s)
 	return (ft_memcmp(s, "2147483647", 10) > 0);
 }
 
-int speed(int flag)
+int	speed(int flag)
 {
-	static int base = 1;
-	static int error = 0;
+	static int	base = 1;
+	static int	error = 0;
 
 	if (flag == SUCCESS)
 	{
@@ -73,11 +73,11 @@ int speed(int flag)
 		return (base);
 	}
 	if (error > 5)
-		return(-1);
+		return (-1);
 	return (base << ((error / 2) + 1));
 }
 
-void	msg_exit (char *s)
+void	msg_exit(char *s)
 {
 	write(STDOUT_FILENO, s, strlen(s));
 	exit (1);
