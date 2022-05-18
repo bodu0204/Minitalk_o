@@ -1,13 +1,12 @@
-# ifndef SERVER_H
-#define SERVER_H
+#ifndef CLIENT_H
+# define CLIENT_H
 # include <unistd.h>
 # include <signal.h>
 # include <stdlib.h>
 # include <string.h>
-#define SHA256LEN 32
-#define BUFSIZE 64
-#define HEADER_SIZE 40
-
+# define SHA256LEN 32
+# define BUFSIZE 64
+# define HEADER_SIZE 40
 enum
 {
 	NOSIG,
@@ -16,13 +15,11 @@ enum
 	CONNECT,
 	GET,
 };
-
 typedef struct s_string
 {
 	char	*s;
 	size_t	l;
 }	t_str;
-
 typedef struct s_information
 {
 	int		result;
