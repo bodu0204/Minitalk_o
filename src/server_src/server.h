@@ -15,7 +15,6 @@ typedef struct s_request
 	size_t				buf;
 	size_t				use;
 	unsigned int		bit;
-	int					status;
 	struct s_request	*next;
 }	t_req;
 
@@ -25,12 +24,6 @@ typedef struct s_clients
 	pid_t				me;
 	struct s_request	*request;
 }	t_cli;
-
-typedef struct s_rtn
-{
-	size_t	prtl;
-	char	*prt;
-}	t_rtn;
 
 void	act(int sig, siginfo_t *info, void *context);
 

@@ -25,7 +25,7 @@ typedef struct s_string
 
 typedef struct s_information
 {
-	int result;
+	int		result;
 	pid_t	pid;
 }	t_info;
 

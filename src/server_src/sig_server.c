@@ -2,11 +2,10 @@
 
 t_req	*search_client(pid_t	i);
 t_req	*mknwereq(pid_t	i);
-void more_mem(t_req	*r);
+void	more_mem(t_req	*r);
 void	output(t_req	*r);
-int check_hash(t_req	*r);
+int		check_hash(t_req	*r);
 void	error_exit(char *msg);
-
 
 extern t_cli	g_cli;
 
