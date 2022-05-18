@@ -3,7 +3,7 @@ void	sha256_done1(t_sha *ctx, uint8_t *hdst);
 
 void	sha256_done(t_sha *ctx, uint8_t *hdst)
 {
-	size_t i;
+	size_t	i;
 
 	ctx->buf[ctx->len] = 0x80;
 	i = ctx->len + 1;
@@ -27,7 +27,7 @@ void	sha256_done(t_sha *ctx, uint8_t *hdst)
 
 void	sha256_done1(t_sha *ctx, uint8_t *hdst)
 {
-	size_t i;
+	size_t	i;
 
 	b32tob8(ctx->bits + 1, ctx->buf + 60);
 	b32tob8(ctx->bits, ctx->buf + 56);

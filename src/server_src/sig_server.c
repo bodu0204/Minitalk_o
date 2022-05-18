@@ -4,7 +4,7 @@ extern t_cli	g_cli;
 
 void	act(int sig, siginfo_t *info, void *context)
 {
-	t_req *c;
+	t_req	*c;
 
 	g_cli.is_sig++;
 	if (g_cli.is_sig != 1 || info->si_pid == g_cli.me)
@@ -33,9 +33,9 @@ t_req	*search_client(pid_t	i)
 	t_req	*r;
 
 	r = g_cli.request;
-	while(r)
+	while (r)
 	{
-		if(r->pid == i)
+		if (r->pid == i)
 			break ;
 		r = r->next;
 	}
@@ -71,7 +71,7 @@ t_req	*mknwereq(pid_t	i)
 
 void	output(t_req	*r)
 {
-	int j;
+	int		j;
 	t_req	*bf;
 
 	j = 0;
@@ -81,9 +81,7 @@ void	output(t_req	*r)
 		error_exit(NULL);
 	j = r->pid;
 	if (g_cli.request == r)
-{
 		g_cli.request = r->next;
-}
 	else
 	{
 		bf = g_cli.request;

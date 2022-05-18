@@ -1,7 +1,7 @@
 #include "server.h"
 #include <stdio.h>/*  */
 void	setact(struct sigaction	*a);
-void	reserror(struct sigaction	*opn);
+void	reserror(void);
 
 t_cli	g_cli = {0};
 
@@ -40,12 +40,11 @@ void setact(struct sigaction	*a)
 	return ;
 }
 
-void	reserror(struct sigaction	*opn)/*  */
+void	reserror(void)
 {
 	t_req	*c;
 	pid_t	i;
 
-	(void)opn;/*  */
 	g_cli.is_sig = -8;
 	c = g_cli.request;
 	if (!c)

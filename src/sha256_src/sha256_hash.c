@@ -15,7 +15,8 @@ void	sha256_hash(t_sha *ctx, const void *data, size_t len)
 		ctx->buf[ctx->len] = bytes[i];
 		ctx->len++;
 		i++;
-		if (ctx->len == sizeof(ctx->buf)) {
+		if (ctx->len == sizeof(ctx->buf))
+		{
 			hash(ctx);
 			ctx->len = 0;
 		}
@@ -24,18 +25,20 @@ void	sha256_hash(t_sha *ctx, const void *data, size_t len)
 
 void	hash(t_sha *ctx)
 {
-	uint32_t hs[8];
-	uint32_t t[2];
-	size_t	i;
+	uint32_t	hs[8];
+	uint32_t	t[2];
+	size_t		i;
 
 	memcpy(hs, ctx->hash, sizeof(uint32_t) * 8);
 	i = 0;
 	while (i < 64)
 	{
 		memmove(ctx->W, ctx->W + 1, sizeof(uint32_t) * 16);
-		if (i < 16) {
+		if (i < 16)
+		{
 			b8tob32(ctx->buf + (i * 4), ctx->W + 16);
-		} else {
+		} else
+		{
 			ctx->W[16] = G1(ctx->W[14]) + ctx->W[9] + G0(ctx->W[1]) + ctx->W[0];
 		}
 		t[0] = hs[7] + S1(hs[4]) + Ch(hs[4], hs[5], hs[6]) + ctx->K[i] + ctx->W[16];

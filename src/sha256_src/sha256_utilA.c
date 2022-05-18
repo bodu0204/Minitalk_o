@@ -24,8 +24,3 @@ uint32_t	G0(uint32_t x)
 {
 	return (rbit(x, 7) ^ rbit(x, 18) ^ (x >> 3));
 }
-
-uint32_t	G1(uint32_t x)
-{
-	return (rbit(x, 17) ^ rbit(x, 19) ^ (x >> 10));
-}
