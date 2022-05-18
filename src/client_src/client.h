@@ -15,11 +15,13 @@ enum
 	CONNECT,
 	GET,
 };
+
 typedef struct s_string
 {
 	char	*s;
 	size_t	l;
 }	t_str;
+
 typedef struct s_information
 {
 	int		result;
