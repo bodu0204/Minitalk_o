@@ -45,4 +45,6 @@ uint32_t	S0(uint32_t x);
 uint32_t	S1(uint32_t x);
 uint32_t	G0(uint32_t x);
 uint32_t	G1(uint32_t x);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
+void	*ft_memmove(void *dest, const void *src, size_t n);
 #endif

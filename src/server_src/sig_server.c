@@ -50,12 +50,12 @@ t_req	*mknwereq(pid_t	i)
 	t_req	*r;
 	t_req	*pre;
 
-	r = calloc(sizeof(t_req), 1);
+	r = ft_calloc(sizeof(t_req), 1);
 	if (!r)
 		error_exit("malloc error\n");
 	r->buf = BUFSIZE;
 	r->pid = i;
-	r->content = calloc(r->buf, sizeof(char));
+	r->content = ft_calloc(r->buf, sizeof(char));
 	if (!r->content)
 		error_exit("malloc error\n");
 	if (!g_cli.request)
@@ -103,7 +103,7 @@ void	error_exit(char *msg)
 	t_req	*rr;
 
 	if (msg)
-		write(STDOUT_FILENO, msg, strlen(msg));
+		write(STDOUT_FILENO, msg, ft_strlen(msg));
 	r = g_cli.request;
 	rr = r->next;
 	while (r)

@@ -9,10 +9,10 @@ void	more_mem(t_req	*r)
 	{
 		l = r->buf;
 		r->buf <<= 1;
-		new = calloc(r->buf, sizeof(char));
+		new = ft_calloc(r->buf, sizeof(char));
 		if (!new)
 			error_exit("malloc error\n");
-		memcpy(new, r->content, l);
+		ft_memcpy(new, r->content, l);
 		free(r->content);
 		r->content = new;
 	}
@@ -24,5 +24,5 @@ int	check_hash(t_req	*r)
 	uint8_t	hash[SHA256LEN];
 
 	sha256(r->content + SHA256LEN, r->use - SHA256LEN, hash);
-	return (!memcmp(r->content, hash, SHA256LEN));
+	return (!ft_memcmp(r->content, hash, SHA256LEN));
 }

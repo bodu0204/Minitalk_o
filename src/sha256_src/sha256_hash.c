@@ -29,11 +29,11 @@ void	hash(t_sha *ctx)
 	uint32_t	t[2];
 	size_t		i;
 
-	memcpy(hs, ctx->hash, sizeof(uint32_t) * 8);
+	ft_memcpy(hs, ctx->hash, sizeof(uint32_t) * 8);
 	i = 0;
 	while (i < 64)
 	{
-		memmove(ctx->W, ctx->W + 1, sizeof(uint32_t) * 16);
+		ft_memmove(ctx->W, ctx->W + 1, sizeof(uint32_t) * 16);
 		if (i < 16)
 			b8tob32(ctx->buf + (i * 4), ctx->W + 16);
 		else
@@ -41,7 +41,7 @@ void	hash(t_sha *ctx)
 		t[0] = hs[7] + S1(hs[4]) + Ch(hs[4], hs[5], hs[6]) \
 		+ ctx->K[i] + ctx->W[16];
 		t[1] = S0(hs[0]) + Ma(hs[0], hs[1], hs[2]);
-		memmove(hs + 1, hs, sizeof(uint32_t) * 7);
+		ft_memmove(hs + 1, hs, sizeof(uint32_t) * 7);
 		hs[4] += t[0];
 		hs[0] = t[0] + t[1];
 		i++;

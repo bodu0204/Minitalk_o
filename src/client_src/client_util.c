@@ -19,13 +19,13 @@ void	readin(size_t	len, t_str	*r)
 	}
 	else
 		readin(len + i, r);
-	memcpy(r->s + len, s, i);
+	ft_memcpy(r->s + len, s, i);
 	return ;
 }
 
 void	treat_to_send(t_str	*s)
 {
-	memcpy(s->s + SHA256LEN, &s->l, sizeof(size_t));
+	ft_memcpy(s->s + SHA256LEN, &s->l, sizeof(size_t));
 	sha256(s->s + SHA256LEN, s->l - SHA256LEN, (uint8_t *)(s->s));
 	return ;
 }
@@ -79,6 +79,6 @@ int	speed(int flag)
 
 void	msg_exit(char *s)
 {
-	write(STDOUT_FILENO, s, strlen(s));
+	write(STDOUT_FILENO, s, ft_strlen(s));
 	exit (1);
 }

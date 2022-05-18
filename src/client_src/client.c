@@ -38,9 +38,9 @@ void	connect(void)
 	size_t	i;
 
 	g_.result = NOSIG;
-	bzero(blank, BUFSIZE);
+	ft_bzero(blank, BUFSIZE);
 	i = HEADER_SIZE;
-	memcpy(blank + SHA256LEN, &i, sizeof(size_t));
+	ft_memcpy(blank + SHA256LEN, &i, sizeof(size_t));
 	sha256(blank + SHA256LEN, sizeof(size_t), (uint8_t *)blank);
 	while (g_.result != SUCCESS)
 	{
@@ -68,7 +68,7 @@ void	sending(t_str	*s)
 		spd = speed(GET);
 		if (spd < 0)
 		{
-			free (s->s);
+			free(s->s);
 			msg_exit("sending error\n");
 		}
 		send(s->s, s->l, spd);
@@ -80,7 +80,7 @@ void	sending(t_str	*s)
 			speed(FAIL);
 	}
 	free(s->s);
-	bzero(s, sizeof(t_str));
+	ft_bzero(s, sizeof(t_str));
 	return ;
 }
 

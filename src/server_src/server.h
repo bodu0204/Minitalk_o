@@ -35,4 +35,10 @@ void	error_exit(char *msg);
 void	act(int sig, siginfo_t *info, void *context);
 
 void	sha256(const void *data, size_t len, uint8_t *hash);
+
+int		ft_printf(const char	*fmt, ...);
+int		ft_memcmp(const void *s1, const void *s2, size_t n);
+void	*ft_memcpy(void *dst, const void *src, size_t n);
+void	*ft_calloc(size_t count, size_t size);
+size_t	ft_strlen(const char *str);
 #endif

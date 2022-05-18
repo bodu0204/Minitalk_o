@@ -13,7 +13,7 @@ int	main(void)
 	setact(&opn);
 	sigaction(SIGUSR1, &opn, NULL);
 	sigaction(SIGUSR2, &opn, NULL);
-	printf("PID:%d\n", g_cli.me);
+	ft_printf("PID:%d\n", g_cli.me);
 	while (1)
 	{
 		while (g_cli.request && !g_cli.is_sig)
