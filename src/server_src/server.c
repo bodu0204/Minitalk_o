@@ -5,7 +5,7 @@ void	reserror(void);
 
 t_cli	g_cli = {0};
 
-int main (void)
+int	main (void)
 {
 	struct sigaction	opn;
 
@@ -14,16 +14,16 @@ int main (void)
 	sigaction(SIGUSR1, &opn, NULL);
 	sigaction(SIGUSR2, &opn, NULL);
 	printf("PID:%d\n", g_cli.me);
-	while(1)
+	while (1)
 	{
 		while (g_cli.request && !g_cli.is_sig)
 		{
 			reserror(&opn);
 			sleep(1);
 		}
-		if(!g_cli.request)
+		if (!g_cli.request)
 			pause();
-		while(g_cli.is_sig)
+		while (g_cli.is_sig)
 		{
 			g_cli.is_sig = 0;
 			usleep(10000);
@@ -32,7 +32,7 @@ int main (void)
 	return (0);
 }
 
-void setact(struct sigaction	*a)
+void	setact(struct sigaction	*a)
 {
 	sigemptyset(&(a->sa_mask));
 	a->sa_flags = SA_SIGINFO;
