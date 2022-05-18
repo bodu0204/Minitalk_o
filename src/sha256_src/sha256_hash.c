@@ -1,4 +1,5 @@
 #include"sha256.h"
+void	hash1(t_sha *ctx, uint32_t *hs);
 
 void	sha256_hash(t_sha *ctx, const void *data, size_t len)
 {
@@ -44,6 +45,13 @@ void	hash(t_sha *ctx)
 		hs[0] = t[0] + t[1];
 		i++;
 	}
+	hash1(ctx, hs);
+}
+
+void	hash1(t_sha *ctx, uint32_t *hs)
+{
+	size_t	i;
+
 	i = 0;
 	while (i < 8)
 	{
