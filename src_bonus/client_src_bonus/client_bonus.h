@@ -6,7 +6,7 @@
 /*   By: ryoakira <ryoakira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 08:31:19 by ryoakira          #+#    #+#             */
-/*   Updated: 2022/05/19 08:39:08 by ryoakira         ###   ########.fr       */
+/*   Updated: 2022/05/19 20:12:17 by ryoakira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # define SHA256LEN 32
 # define BUFSIZE 64
 # define HEADER_SIZE 40
+# define STARTSPEED 4
 enum
 {
 	NOSIG,

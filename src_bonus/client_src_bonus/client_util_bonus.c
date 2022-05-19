@@ -6,7 +6,7 @@
 /*   By: ryoakira <ryoakira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 08:30:59 by ryoakira          #+#    #+#             */
-/*   Updated: 2022/05/19 08:35:05 by ryoakira         ###   ########.fr       */
+/*   Updated: 2022/05/19 20:12:37 by ryoakira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,14 @@ int	isnt_correct_num(char *s)
 
 int	speed(int flag)
 {
-	static int	base = 1;
+	static int	base = STARTSPEED;
 	static int	error = 0;
 
 	if (flag == SUCCESS)
 	{
 		if (error > 1)
 		{
-			base = 1;
+			base = STARTSPEED;
 			connect();
 		}
 		error = 0;
