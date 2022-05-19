@@ -1,14 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ryoakira <ryoakira@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/19 08:31:10 by ryoakira          #+#    #+#             */
-/*   Updated: 2022/05/19 08:31:11 by ryoakira         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
 
 #include "client.h"
 
@@ -27,19 +16,20 @@ int	main(int argc, char *argv[])
 {
 	t_str	s;
 
-	if (argc != 2 || isnt_correct_num(argv[1]))
+	if (argc != 3 || isnt_correct_num(argv[1]))
 		msg_exit("not valid PID\n");
 	g_.result = NOSIG;
 	g_.pid = atoi(argv[1]);
 	signal(SIGUSR1, act);
 	signal(SIGUSR2, act);
 	connect();
-	while (1)
-	{
-		readin(HEADER_SIZE, &s);
-		treat_to_send(&s);
-		sending(&s);
-	}
+	s.l = HEADER_SIZE + ft_strlen(argv[2]);
+	s.s = malloc(s.l);
+	if (!s.s)
+		msg_exit("malloc error\n");
+	ft_memcpy(s.s + HEADER_SIZE, argv[2], s.l - HEADER_SIZE);
+	treat_to_send(&s);
+	sending(&s);
 	return (0);
 }
 
@@ -119,3 +109,25 @@ void	send(char *s, size_t l, int	spd)
 	}
 	return ;
 }
+
+/*
+int	main(int argc, char *argv[])
+{
+	t_str	s;
+
+	if (argc != 2 || isnt_correct_num(argv[1]))
+		msg_exit("not valid PID\n");
+	g_.result = NOSIG;
+	g_.pid = atoi(argv[1]);
+	signal(SIGUSR1, act);
+	signal(SIGUSR2, act);
+	connect();
+	while (1)
+	{
+		readin(HEADER_SIZE, &s);
+		treat_to_send(&s);
+		sending(&s);
+	}
+	return (0);
+}
+ */
