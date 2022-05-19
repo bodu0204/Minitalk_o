@@ -6,7 +6,7 @@
 /*   By: ryoakira <ryoakira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 08:31:10 by ryoakira          #+#    #+#             */
-/*   Updated: 2022/05/19 20:09:32 by ryoakira         ###   ########.fr       */
+/*   Updated: 2022/05/20 06:39:27 by ryoakira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(int argc, char *argv[])
 	if (argc != 3 || isnt_correct_num(argv[1]))
 		msg_exit("not valid args\n");
 	g_.result = NOSIG;
-	g_.pid = atoi(argv[1]);
+	g_.pid = ft_atoi(argv[1]);
 	signal(SIGUSR1, act);
 	signal(SIGUSR2, act);
 	connect();
