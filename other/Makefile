@@ -78,8 +78,10 @@ clean :
 	rm -f $(PRINTF_a)
 
 fclean : clean
-	rm -f $(NAME)
-	rm -f $(BONUSNAME)
+	rm -f $(ACHIEV0)
+	rm -f $(ACHIEV1)
+	rm -f $(ACHIEV0b)
+	rm -f $(ACHIEV1b)
 	rm -rf $(PRINTF_od)
 	cd "$(PRINTF_d)" && make fclean
 
