@@ -6,7 +6,7 @@
 /*   By: ryoakira <ryoakira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 08:31:19 by ryoakira          #+#    #+#             */
-/*   Updated: 2022/05/20 06:38:43 by ryoakira         ###   ########.fr       */
+/*   Updated: 2022/05/26 06:33:39 by ryoakira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,4 @@ void	*ft_memcpy(void *dst, const void *src, size_t n);
 int		ft_atoi(const char *str);
 void	ft_bzero(void *s, size_t n);
 size_t	ft_strlen(const char *str);
-int		ft_atoi(const char *str);
 #endif
