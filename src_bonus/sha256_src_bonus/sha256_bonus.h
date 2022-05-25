@@ -6,7 +6,7 @@
 /*   By: ryoakira <ryoakira@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/19 08:32:42 by ryoakira          #+#    #+#             */
-/*   Updated: 2022/05/19 08:39:19 by ryoakira         ###   ########.fr       */
+/*   Updated: 2022/05/26 06:39:08 by ryoakira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define SHA256_BONUS_H
 # include <stddef.h>
 # include <stdint.h>
-# include <string.h>
 # define SHA256_SIZE_BYTES 32
 
 enum
